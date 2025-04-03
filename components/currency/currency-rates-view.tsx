@@ -6,7 +6,6 @@ import { useSearchFilter } from '@/hooks/useSearchFilter';
 import { CurrencySelect } from './currency-select';
 import { SearchInput } from '@/components/ui/search-input';
 import { CurrencyRatesList } from './currency-rates-list';
-import { ErrorDisplay } from '@/components/ui/error-display';
 import { LoadingSpinner } from '@/components/ui/loading-spinner';
 import type { Currency, CurrencyRate } from '@/types/currency';
 
@@ -44,8 +43,6 @@ export function CurrencyRatesView({ currencies, currenciesMap }: CurrencyRatesVi
           placeholder="Search currency..."
         />
       </div>
-
-      {error && <ErrorDisplay title="Error fetching currency rates" message={error} />}
 
       {isLoading ? (
         <div className="flex justify-center py-8">

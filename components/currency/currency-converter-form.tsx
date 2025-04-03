@@ -4,7 +4,6 @@ import { ArrowRightLeft } from 'lucide-react';
 import { useCurrencyConverter } from '@/hooks/useCurrencyConverter';
 import { AmountInput } from './amount-input';
 import { CurrencySelect } from './currency-select';
-import { ErrorDisplay } from '@/components/ui/error-display';
 import { LoadingSpinner } from '@/components/ui/loading-spinner';
 import type { Currency } from '@/types/currency';
 
@@ -75,8 +74,6 @@ export function CurrencyConverterForm({ currencies }: CurrencyConverterFormProps
           )}
         </button>
       </div>
-
-      {error && <ErrorDisplay title="Error converting currency" message={error} />}
 
       {result !== null && (
         <div className="p-4 bg-slate-50 border border-slate-200 rounded-md">
