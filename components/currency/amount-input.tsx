@@ -18,8 +18,11 @@ export function AmountInput({ value, onChange, className = '' }: AmountInputProp
         type="number"
         min="0.01"
         step="0.01"
-        value={value}
-        onChange={(e) => onChange(Number.parseFloat(e.target.value) || 0)}
+        value={value || ''}
+        onChange={(e) => {
+          const inputValue = e.target.value;
+          onChange(inputValue === '' ? 0 : Number.parseFloat(inputValue) || 0);
+        }}
         className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-slate-500 focus:border-transparent"
       />
     </div>

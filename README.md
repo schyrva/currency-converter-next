@@ -4,7 +4,7 @@ A modern, responsive currency converter application built with Next.js and Tailw
 
 ## 🔗 Demo
 
-[View Live Demo](https://demo-link-coming-soon.vercel.app) - Coming soon!
+[View Live Demo](https://currency-converter-next-vert.vercel.app/)
 
 ## 🌟 Features
 
