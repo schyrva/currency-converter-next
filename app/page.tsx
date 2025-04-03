@@ -7,18 +7,20 @@ export default async function Home() {
   const currencies = Object.entries(currenciesData).map(([code, name]) => ({ code, name }));
 
   return (
-    <main className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-6">Currency Converter</h1>
+    <main className="container mx-auto px-4 py-8 flex flex-col items-center">
+      <h1 className="text-3xl font-bold mb-6 text-center">Currency Converter</h1>
 
-      <NavTabs
-        tabs={[
-          { href: '/', label: 'Converter', isActive: true },
-          { href: '/rates', label: 'Currency Rates', isActive: false },
-        ]}
-      />
+      <div className="w-full max-w-2xl">
+        <NavTabs
+          tabs={[
+            { href: '/', label: 'Converter', isActive: true },
+            { href: '/rates', label: 'Currency Rates', isActive: false },
+          ]}
+        />
 
-      <div className="bg-white rounded-lg shadow-md p-6 max-w-2xl">
-        <CurrencyConverterForm currencies={currencies} />
+        <div className="bg-white rounded-lg shadow-md p-6 mt-6">
+          <CurrencyConverterForm currencies={currencies} />
+        </div>
       </div>
     </main>
   );
