@@ -1,17 +1,24 @@
-"use client"
+'use client';
 
-import type { Currency } from "@/types/currency"
+import type { Currency } from '@/types/currency';
 
 interface CurrencySelectProps {
-  id: string
-  label: string
-  value: string
-  onChange: (value: string) => void
-  currencies: Currency[]
-  className?: string
+  id: string;
+  label: string;
+  value: string;
+  onChange: (value: string) => void;
+  currencies: Currency[];
+  className?: string;
 }
 
-export function CurrencySelect({ id, label, value, onChange, currencies, className = "" }: CurrencySelectProps) {
+export function CurrencySelect({
+  id,
+  label,
+  value,
+  onChange,
+  currencies,
+  className = '',
+}: CurrencySelectProps) {
   return (
     <div className={className}>
       <label htmlFor={id} className="block text-sm font-medium text-gray-700 mb-1">
@@ -30,6 +37,5 @@ export function CurrencySelect({ id, label, value, onChange, currencies, classNa
         ))}
       </select>
     </div>
-  )
+  );
 }
-

@@ -1,15 +1,15 @@
-"use client"
+'use client';
 
-import { ArrowRightLeft } from "lucide-react"
-import { useCurrencyConverter } from "@/hooks/useCurrencyConverter"
-import { AmountInput } from "./amount-input"
-import { CurrencySelect } from "./currency-select"
-import { ErrorDisplay } from "@/components/ui/error-display"
-import { LoadingSpinner } from "@/components/ui/loading-spinner"
-import type { Currency } from "@/types/currency"
+import { ArrowRightLeft } from 'lucide-react';
+import { useCurrencyConverter } from '@/hooks/useCurrencyConverter';
+import { AmountInput } from './amount-input';
+import { CurrencySelect } from './currency-select';
+import { ErrorDisplay } from '@/components/ui/error-display';
+import { LoadingSpinner } from '@/components/ui/loading-spinner';
+import type { Currency } from '@/types/currency';
 
 interface CurrencyConverterFormProps {
-  currencies: Currency[]
+  currencies: Currency[];
 }
 
 export function CurrencyConverterForm({ currencies }: CurrencyConverterFormProps) {
@@ -25,7 +25,7 @@ export function CurrencyConverterForm({ currencies }: CurrencyConverterFormProps
     error,
     convert,
     swapCurrencies,
-  } = useCurrencyConverter()
+  } = useCurrencyConverter();
 
   return (
     <div className="space-y-6">
@@ -71,7 +71,7 @@ export function CurrencyConverterForm({ currencies }: CurrencyConverterFormProps
               Converting...
             </span>
           ) : (
-            "Convert"
+            'Convert'
           )}
         </button>
       </div>
@@ -87,6 +87,5 @@ export function CurrencyConverterForm({ currencies }: CurrencyConverterFormProps
         </div>
       )}
     </div>
-  )
+  );
 }
-

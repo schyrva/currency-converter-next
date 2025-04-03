@@ -1,47 +1,47 @@
-"use client"
+'use client';
 
-import { useState } from "react"
-import { convertCurrency } from "@/lib/currency-service"
-import { ArrowRightLeft, Loader2, AlertCircle } from "lucide-react"
+import { useState } from 'react';
+import { convertCurrency } from '@/lib/currency-service';
+import { ArrowRightLeft, Loader2, AlertCircle } from 'lucide-react';
 
 interface CurrencyConverterProps {
-  currencies: Record<string, string>
+  currencies: Record<string, string>;
 }
 
 export function CurrencyConverter({ currencies }: CurrencyConverterProps) {
-  const [amount, setAmount] = useState<number>(1)
-  const [fromCurrency, setFromCurrency] = useState<string>("USD")
-  const [toCurrency, setToCurrency] = useState<string>("EUR")
-  const [result, setResult] = useState<number | null>(null)
-  const [isLoading, setIsLoading] = useState<boolean>(false)
-  const [error, setError] = useState<string | null>(null)
+  const [amount, setAmount] = useState<number>(1);
+  const [fromCurrency, setFromCurrency] = useState<string>('USD');
+  const [toCurrency, setToCurrency] = useState<string>('EUR');
+  const [result, setResult] = useState<number | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleConvert = async () => {
     if (!amount || amount <= 0) {
-      setError("Please enter a valid amount")
-      return
+      setError('Please enter a valid amount');
+      return;
     }
 
-    setIsLoading(true)
-    setError(null)
-    setResult(null)
+    setIsLoading(true);
+    setError(null);
+    setResult(null);
 
     try {
-      const convertedAmount = await convertCurrency(fromCurrency, toCurrency, amount)
-      setResult(convertedAmount)
+      const convertedAmount = await convertCurrency(fromCurrency, toCurrency, amount);
+      setResult(convertedAmount);
     } catch (err) {
-      console.error("Error in component:", err)
-      setError(err instanceof Error ? err.message : "Failed to convert currency.")
+      console.error('Error in component:', err);
+      setError(err instanceof Error ? err.message : 'Failed to convert currency.');
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
-  }
+  };
 
   const handleSwapCurrencies = () => {
-    setFromCurrency(toCurrency)
-    setToCurrency(fromCurrency)
-    setResult(null)
-  }
+    setFromCurrency(toCurrency);
+    setToCurrency(fromCurrency);
+    setResult(null);
+  };
 
   return (
     <div className="space-y-6">
@@ -120,7 +120,7 @@ export function CurrencyConverter({ currencies }: CurrencyConverterProps) {
               Converting...
             </span>
           ) : (
-            "Convert"
+            'Convert'
           )}
         </button>
       </div>
@@ -144,6 +144,5 @@ export function CurrencyConverter({ currencies }: CurrencyConverterProps) {
         </div>
       )}
     </div>
-  )
+  );
 }
-

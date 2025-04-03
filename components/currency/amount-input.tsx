@@ -1,17 +1,18 @@
-"use client"
+'use client';
 
 interface AmountInputProps {
-  value: number
-  onChange: (value: number) => void
-  className?: string
+  value: number;
+  onChange: (value: number) => void;
+  className?: string;
 }
 
-export function AmountInput({ value, onChange, className = "" }: AmountInputProps) {
+export function AmountInput({ value, onChange, className = '' }: AmountInputProps) {
   return (
     <div className={className}>
       <label htmlFor="amount" className="block text-sm font-medium text-gray-700 mb-1">
         Amount
       </label>
+
       <input
         id="amount"
         type="number"
@@ -22,6 +23,5 @@ export function AmountInput({ value, onChange, className = "" }: AmountInputProp
         className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-slate-500 focus:border-transparent"
       />
     </div>
-  )
+  );
 }
-

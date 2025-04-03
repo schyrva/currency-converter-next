@@ -1,49 +1,49 @@
-"use client"
+'use client';
 
-import { useState, useEffect } from "react"
-import { getRates } from "@/lib/currency-service"
-import { Search, Loader2, AlertCircle } from "lucide-react"
+import { useState, useEffect } from 'react';
+import { getRates } from '@/lib/currency-service';
+import { Search, Loader2, AlertCircle } from 'lucide-react';
 
 interface CurrencyRatesProps {
-  currencies: Record<string, string>
+  currencies: Record<string, string>;
 }
 
 export function CurrencyRates({ currencies }: CurrencyRatesProps) {
-  const [baseCurrency, setBaseCurrency] = useState<string>("USD")
-  const [rates, setRates] = useState<Record<string, number> | null>(null)
-  const [isLoading, setIsLoading] = useState<boolean>(false)
-  const [error, setError] = useState<string | null>(null)
-  const [searchQuery, setSearchQuery] = useState<string>("")
+  const [baseCurrency, setBaseCurrency] = useState<string>('USD');
+  const [rates, setRates] = useState<Record<string, number> | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = useState<string>('');
 
   useEffect(() => {
-    fetchRates(baseCurrency)
-  }, [baseCurrency])
+    fetchRates(baseCurrency);
+  }, [baseCurrency]);
 
   const fetchRates = async (currency: string) => {
-    setIsLoading(true)
-    setError(null)
-    setRates(null)
+    setIsLoading(true);
+    setError(null);
+    setRates(null);
 
     try {
-      const ratesData = await getRates(currency)
-      setRates(ratesData)
+      const ratesData = await getRates(currency);
+      setRates(ratesData);
     } catch (err) {
-      console.error("Error in component:", err)
-      setError(err instanceof Error ? err.message : "Failed to fetch currency rates.")
+      console.error('Error in component:', err);
+      setError(err instanceof Error ? err.message : 'Failed to fetch currency rates.');
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
-  }
+  };
 
   const filteredRates = rates
     ? Object.entries(rates)
         .filter(
           ([code]) =>
             code.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            (currencies[code] && currencies[code].toLowerCase().includes(searchQuery.toLowerCase())),
+            (currencies[code] && currencies[code].toLowerCase().includes(searchQuery.toLowerCase()))
         )
         .sort((a, b) => a[0].localeCompare(b[0]))
-    : []
+    : [];
 
   return (
     <div className="space-y-6">
@@ -119,6 +119,7 @@ export function CurrencyRates({ currencies }: CurrencyRatesProps) {
                     </th>
                   </tr>
                 </thead>
+
                 <tbody className="bg-white divide-y divide-gray-200">
                   {filteredRates.map(([code, rate]) => (
                     <tr key={code} className="hover:bg-gray-50">
@@ -139,6 +140,5 @@ export function CurrencyRates({ currencies }: CurrencyRatesProps) {
         </div>
       ) : null}
     </div>
-  )
+  );
 }
-

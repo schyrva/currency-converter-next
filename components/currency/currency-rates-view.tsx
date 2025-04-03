@@ -1,29 +1,29 @@
-"use client"
+'use client';
 
-import { useState } from "react"
-import { useCurrencyRates } from "@/hooks/useCurrencyRates"
-import { useSearchFilter } from "@/hooks/useSearchFilter"
-import { CurrencySelect } from "./currency-select"
-import { SearchInput } from "@/components/ui/search-input"
-import { CurrencyRatesList } from "./currency-rates-list"
-import { ErrorDisplay } from "@/components/ui/error-display"
-import { LoadingSpinner } from "@/components/ui/loading-spinner"
-import type { Currency, CurrencyRate } from "@/types/currency"
+import { useState } from 'react';
+import { useCurrencyRates } from '@/hooks/useCurrencyRates';
+import { useSearchFilter } from '@/hooks/useSearchFilter';
+import { CurrencySelect } from './currency-select';
+import { SearchInput } from '@/components/ui/search-input';
+import { CurrencyRatesList } from './currency-rates-list';
+import { ErrorDisplay } from '@/components/ui/error-display';
+import { LoadingSpinner } from '@/components/ui/loading-spinner';
+import type { Currency, CurrencyRate } from '@/types/currency';
 
 interface CurrencyRatesViewProps {
-  currencies: Currency[]
-  currenciesMap: Record<string, string>
+  currencies: Currency[];
+  currenciesMap: Record<string, string>;
 }
 
 export function CurrencyRatesView({ currencies, currenciesMap }: CurrencyRatesViewProps) {
-  const [baseCurrency, setBaseCurrency] = useState<string>("USD")
-  const { rates, isLoading, error } = useCurrencyRates(baseCurrency)
+  const [baseCurrency, setBaseCurrency] = useState<string>('USD');
+  const { rates, isLoading, error } = useCurrencyRates(baseCurrency);
 
   const {
     searchQuery,
     setSearchQuery,
     filteredItems: filteredRates,
-  } = useSearchFilter<CurrencyRate>(rates, (rate) => [rate.code, currenciesMap[rate.code] || ""])
+  } = useSearchFilter<CurrencyRate>(rates, (rate) => [rate.code, currenciesMap[rate.code] || '']);
 
   return (
     <div className="space-y-6">
@@ -38,7 +38,11 @@ export function CurrencyRatesView({ currencies, currenciesMap }: CurrencyRatesVi
           currencies={currencies}
         />
 
-        <SearchInput value={searchQuery} onChange={setSearchQuery} placeholder="Search currency..." />
+        <SearchInput
+          value={searchQuery}
+          onChange={setSearchQuery}
+          placeholder="Search currency..."
+        />
       </div>
 
       {error && <ErrorDisplay title="Error fetching currency rates" message={error} />}
@@ -50,10 +54,13 @@ export function CurrencyRatesView({ currencies, currenciesMap }: CurrencyRatesVi
       ) : rates.length > 0 ? (
         <div className="mt-4">
           <h3 className="text-lg font-medium mb-2">1 {baseCurrency} equals:</h3>
-          <CurrencyRatesList rates={filteredRates} currencies={currenciesMap} baseCurrency={baseCurrency} />
+          <CurrencyRatesList
+            rates={filteredRates}
+            currencies={currenciesMap}
+            baseCurrency={baseCurrency}
+          />
         </div>
       ) : null}
     </div>
-  )
+  );
 }
-
